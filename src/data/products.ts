@@ -1,3 +1,4 @@
+
 export interface Product {
   id: string;
   name: string;
@@ -5,10 +6,14 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
+  images?: string[];
   isNew: boolean;
   description?: string;
   colors?: string[];
   sizes?: string[];
+  stock?: number;
+  material?: string;
+  care?: string;
 }
 
 export const products: Product[] = [
@@ -19,22 +24,38 @@ export const products: Product[] = [
     category: "Women",
     price: 89.99,
     originalPrice: 129.99,
-    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800",
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    description: "Beautiful floral print dress perfect for summer days.",
-    colors: ["Blue", "Pink", "Yellow"],
-    sizes: ["XS", "S", "M", "L", "XL"]
+    description: "Beautiful floral print dress perfect for summer days. Made from 100% cotton for breathability and comfort. Features a flattering A-line silhouette and adjustable shoulder straps.",
+    colors: ["Blue Floral", "Pink Floral", "Yellow Floral"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    stock: 45,
+    material: "100% Cotton",
+    care: "Machine wash cold, tumble dry low",
   },
   {
     id: "w2",
     name: "Cashmere Sweater",
     category: "Women",
     price: 119.99,
-    image: "https://images.unsplash.com/photo-1434389676691-5d1551a5e8b2?w=800",
+    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1434389676691-5d1551a5e8b2?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1581057391444-821f2f5fa035?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    description: "Luxurious cashmere sweater for cold winter days.",
-    colors: ["Cream", "Gray", "Black"],
-    sizes: ["S", "M", "L"]
+    description: "Luxurious cashmere sweater that combines warmth with elegance. Perfect for cold winter days or layering over a collared shirt for a sophisticated look.",
+    colors: ["Cream", "Gray", "Black", "Navy"],
+    sizes: ["S", "M", "L"],
+    stock: 30,
+    material: "100% Cashmere",
+    care: "Dry clean only",
   },
   {
     id: "w3",
@@ -42,22 +63,38 @@ export const products: Product[] = [
     category: "Women",
     price: 199.99,
     originalPrice: 299.99,
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1521223895410-5d45f7f2d1b4?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    description: "Classic leather jacket that never goes out of style.",
+    description: "Classic leather jacket that never goes out of style. Made from premium genuine leather with a soft inner lining. Features zippered pockets and a sleek silhouette.",
     colors: ["Black", "Brown"],
-    sizes: ["XS", "S", "M", "L"]
+    sizes: ["XS", "S", "M", "L"],
+    stock: 25,
+    material: "Genuine Leather",
+    care: "Professional leather clean only",
   },
   {
     id: "w4",
     name: "Silk Blouse",
     category: "Women",
     price: 79.99,
-    image: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800",
+    image: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    description: "Elegant silk blouse for formal occasions.",
-    colors: ["White", "Black", "Red"],
-    sizes: ["XS", "S", "M", "L", "XL"]
+    description: "Elegant silk blouse perfect for formal occasions or office wear. The luxurious fabric drapes beautifully and feels incredibly soft against the skin.",
+    colors: ["White", "Black", "Red", "Blush Pink"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    stock: 50,
+    material: "100% Silk",
+    care: "Dry clean or hand wash cold",
   },
   {
     id: "w5",
@@ -65,20 +102,38 @@ export const products: Product[] = [
     category: "Women",
     price: 69.99,
     originalPrice: 99.99,
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Blue", "Black"],
-    sizes: ["26", "27", "28", "29", "30", "31"]
+    description: "Classic high-waist jeans with the perfect amount of stretch. Features a button fly and five-pocket styling for a timeless look.",
+    colors: ["Light Blue", "Dark Blue", "Black"],
+    sizes: ["24", "25", "26", "27", "28", "29", "30", "31"],
+    stock: 100,
+    material: "98% Cotton, 2% Elastane",
+    care: "Machine wash cold, hang dry",
   },
   {
     id: "w6",
     name: "Wool Coat",
     category: "Women",
     price: 249.99,
-    image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=800",
+    image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["Camel", "Gray", "Navy"],
-    sizes: ["XS", "S", "M", "L"]
+    description: "Sophisticated wool coat for the modern woman. Double-breasted design with a belt to cinch the waist. Perfect for both casual and formal occasions.",
+    colors: ["Camel", "Gray", "Navy", "Black"],
+    sizes: ["XS", "S", "M", "L"],
+    stock: 35,
+    material: "80% Wool, 20% Polyamide",
+    care: "Dry clean only",
   },
 
   // Men's Products
@@ -87,10 +142,19 @@ export const products: Product[] = [
     name: "Cotton T-Shirt",
     category: "Men",
     price: 29.99,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["White", "Black", "Navy", "Gray"],
-    sizes: ["S", "M", "L", "XL", "XXL"]
+    description: "Essential cotton t-shirt for everyday wear. Soft, breathable, and perfectly fitted. A wardrobe staple that never goes out of style.",
+    colors: ["White", "Black", "Navy", "Gray", "Olive"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    stock: 200,
+    material: "100% Combed Cotton",
+    care: "Machine wash warm, tumble dry low",
   },
   {
     id: "m2",
@@ -98,20 +162,38 @@ export const products: Product[] = [
     category: "Men",
     price: 89.99,
     originalPrice: 129.99,
-    image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c5?w=800",
+    image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c5?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1576995853123-5a10305d93c5?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1586363104866-3a00e8d89d2f?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Blue", "Black"],
-    sizes: ["S", "M", "L", "XL"]
+    description: "Classic denim jacket that adds a cool touch to any outfit. Made from durable denim with a comfortable fit. Perfect for layering.",
+    colors: ["Blue", "Black", "Light Wash"],
+    sizes: ["S", "M", "L", "XL"],
+    stock: 60,
+    material: "100% Cotton Denim",
+    care: "Machine wash cold, inside out",
   },
   {
     id: "m3",
     name: "Wool Blazer",
     category: "Men",
     price: 199.99,
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800",
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1507680434567-5739c21be41d?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Navy", "Gray", "Black"],
-    sizes: ["S", "M", "L", "XL"]
+    description: "Tailored wool blazer for a sophisticated look. Perfect for business meetings or formal events. Features a slim fit and notch lapel.",
+    colors: ["Navy", "Gray", "Charcoal"],
+    sizes: ["S", "M", "L", "XL"],
+    stock: 40,
+    material: "70% Wool, 30% Polyester",
+    care: "Dry clean only",
   },
   {
     id: "m4",
@@ -119,20 +201,38 @@ export const products: Product[] = [
     category: "Men",
     price: 159.99,
     originalPrice: 229.99,
-    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800",
+    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Brown", "Black"],
-    sizes: ["7", "8", "9", "10", "11", "12"]
+    description: "Premium leather boots built to last. Comfortable for all-day wear with a classic design that pairs well with jeans or chinos.",
+    colors: ["Brown", "Black", "Tan"],
+    sizes: ["7", "8", "9", "10", "11", "12", "13"],
+    stock: 55,
+    material: "Full-Grain Leather",
+    care: "Leather conditioner recommended",
   },
   {
     id: "m5",
     name: "Hoodie",
     category: "Men",
     price: 59.99,
-    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800",
+    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1509942774463-acf339cf87d3?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["Gray", "Black", "Navy", "Red"],
-    sizes: ["S", "M", "L", "XL"]
+    description: "Cozy hoodie perfect for lounging or casual outings. Fleece-lined for extra warmth with a spacious front pocket.",
+    colors: ["Gray", "Black", "Navy", "Burgundy", "Forest Green"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    stock: 150,
+    material: "80% Cotton, 20% Polyester",
+    care: "Machine wash cold, tumble dry low",
   },
   {
     id: "m6",
@@ -140,10 +240,19 @@ export const products: Product[] = [
     category: "Men",
     price: 79.99,
     originalPrice: 109.99,
-    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800",
+    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Khaki", "Navy", "Olive"],
-    sizes: ["28", "29", "30", "31", "32", "33", "34"]
+    description: "Versatile chino pants that bridge the gap between casual and formal. Comfortable fit with a modern tapered leg.",
+    colors: ["Khaki", "Navy", "Olive", "Gray", "Beige"],
+    sizes: ["28", "29", "30", "31", "32", "33", "34", "36"],
+    stock: 120,
+    material: "98% Cotton, 2% Elastane",
+    care: "Machine wash cold, hang dry",
   },
 
   // Kids' Products
@@ -152,10 +261,19 @@ export const products: Product[] = [
     name: "Cartoon T-Shirt",
     category: "Kids",
     price: 19.99,
-    image: "https://images.unsplash.com/photo-1519237438530-3eb3cc8a6eac?w=800",
+    image: "https://images.unsplash.com/photo-1519237438530-3eb3cc8a6eac?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1519237438530-3eb3cc8a6eac?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1622290291468-a28e100b7192?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["Red", "Blue", "Green", "Yellow"],
-    sizes: ["2T", "3T", "4T", "5T", "6"]
+    description: "Fun and colorful t-shirt featuring your child's favorite cartoon characters. Soft cotton material that's gentle on sensitive skin.",
+    colors: ["Red", "Blue", "Green", "Yellow", "Purple"],
+    sizes: ["2T", "3T", "4T", "5T", "6", "7"],
+    stock: 80,
+    material: "100% Cotton",
+    care: "Machine wash warm, tumble dry low",
   },
   {
     id: "k2",
@@ -163,20 +281,38 @@ export const products: Product[] = [
     category: "Kids",
     price: 39.99,
     originalPrice: 59.99,
-    image: "https://images.unsplash.com/photo-1519457431-44ccb64a579b?w=800",
+    image: "https://images.unsplash.com/photo-1519457431-44ccb64a579b?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1519457431-44ccb64a579b?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
+    description: "Adorable denim overalls perfect for playtime. Adjustable straps allow for growth, making them a long-lasting favorite.",
     colors: ["Blue"],
-    sizes: ["2T", "3T", "4T", "5T", "6"]
+    sizes: ["2T", "3T", "4T", "5T", "6"],
+    stock: 45,
+    material: "100% Cotton Denim",
+    care: "Machine wash cold, tumble dry low",
   },
   {
     id: "k3",
     name: "Rain Jacket",
     category: "Kids",
     price: 34.99,
-    image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800",
+    image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["Yellow", "Blue", "Pink"],
-    sizes: ["2T", "3T", "4T", "5T", "6", "7"]
+    description: "Bright and cheerful rain jacket to keep your little one dry on wet days. Waterproof with a soft lining and reflective details for safety.",
+    colors: ["Yellow", "Blue", "Pink", "Red"],
+    sizes: ["2T", "3T", "4T", "5T", "6", "7"],
+    stock: 65,
+    material: "100% Polyester (Waterproof)",
+    care: "Machine wash gentle, hang dry",
   },
   {
     id: "k4",
@@ -184,20 +320,38 @@ export const products: Product[] = [
     category: "Kids",
     price: 44.99,
     originalPrice: 64.99,
-    image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800",
+    image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["White/Pink", "White/Blue", "Black/Red"],
-    sizes: ["8", "9", "10", "11", "12", "13", "1", "2", "3"]
+    description: "Comfortable and durable sneakers for active kids. Lightweight design with cushioned soles for all-day comfort.",
+    colors: ["White/Pink", "White/Blue", "Black/Red", "Purple/Teal"],
+    sizes: ["8", "9", "10", "11", "12", "13", "1", "2", "3"],
+    stock: 90,
+    material: "Synthetic Leather, Rubber Sole",
+    care: "Spot clean with damp cloth",
   },
   {
     id: "k5",
     name: "Pajama Set",
     category: "Kids",
     price: 24.99,
-    image: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=800",
+    image: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1519237438530-3eb3cc8a6eac?w=800&h=1000&fit=crop",
+    ],
     isNew: true,
-    colors: ["Unicorn", "Dinosaur", "Space"],
-    sizes: ["2T", "3T", "4T", "5T", "6"]
+    description: "Cozy two-piece pajama set featuring fun prints. Made from soft, breathable cotton for a comfortable night's sleep.",
+    colors: ["Unicorn Print", "Dinosaur Print", "Space Print", "Animal Print"],
+    sizes: ["2T", "3T", "4T", "5T", "6", "7", "8"],
+    stock: 110,
+    material: "100% Cotton",
+    care: "Machine wash warm, tumble dry low",
   },
   {
     id: "k6",
@@ -205,9 +359,18 @@ export const products: Product[] = [
     category: "Kids",
     price: 14.99,
     originalPrice: 24.99,
-    image: "https://images.unsplash.com/photo-1479079476249-7d2e1e8393e4?w=800",
+    image: "https://images.unsplash.com/photo-1479079476249-7d2e1e8393e4?w=800&h=1000&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1479079476249-7d2e1e8393e4?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=800&h=1000&fit=crop",
+    ],
     isNew: false,
-    colors: ["Red", "Blue", "Green", "Pink"],
-    sizes: ["S", "M", "L"]
-  }
+    description: "Warm and cozy winter gloves to keep little hands toasty. Touchscreen-compatible fingertips and non-slip grip.",
+    colors: ["Red", "Blue", "Green", "Pink", "Purple"],
+    sizes: ["S", "M", "L"],
+    stock: 75,
+    material: "Acrylic, Fleece Lining",
+    care: "Hand wash, lay flat to dry",
+  },
 ];
