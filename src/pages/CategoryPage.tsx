@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations_supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
-import type { Database } from "@/integrations/supabase/types";
+import type { Database } from "@/integrations_supabase/types";
 
 type Product = Database["public"]["Tables"]["products"]["Row"];
 
