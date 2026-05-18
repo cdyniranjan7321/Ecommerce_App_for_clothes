@@ -1,53 +1,93 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { supabase } from "@/integrations_supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
-import type { Database } from "@/integrations_supabase/types";
-
-type Product = Database["public"]["Tables"]["products"]["Row"];
+import { products, type Product } from "@/data/products";
 
 const CategoryPage = () => {
   const { category } = useParams<{ category: string }>();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const categoryLabel = category ? category.charAt(0).toUpperCase() + category.slice(1) : "";
+  // Get display title
+  const getTitle = (cat: string) => {
+    const titles: Record<string, string> = {
+      women: "Women's Collection",
+      men: "Men's Collection",
+      kids: "Kids' Collection",
+      new: "New Arrivals",
+      sale: "Sale",
+    };
+    return titles[cat.toLowerCase()] || cat;
+  };
+
+  // Get breadcrumb text
+  const getBreadcrumbText = (cat: string) => {
+    const texts: Record<string, string> = {
+      women: "Women",
+      men: "Men",
+      kids: "Kids",
+      new: "New Arrivals",
+      sale: "Sale",
+    };
+    return texts[cat.toLowerCase()] || cat;
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      let query = supabase.from("products").select("*").order("created_at", { ascending: false });
-      if (category && category !== "new" && category !== "sale") {
-        query = query.eq("category", categoryLabel);
-      }
+    // Simulate loading delay for smoother UX
+    setLoading(true);
+    setTimeout(() => {
+      let filteredProducts = [...products];
+      
       if (category === "new") {
-        query = query.eq("is_new", true);
+        filteredProducts = products.filter(p => p.isNew === true);
+      } 
+      else if (category === "sale") {
+        filteredProducts = products.filter(p => p.originalPrice !== undefined);
+      } 
+      else {
+        const categoryMap: Record<string, "Women" | "Men" | "Kids"> = {
+          women: "Women",
+          men: "Men",
+          kids: "Kids"
+        };
+        const mappedCategory = categoryMap[category?.toLowerCase() || ""];
+        if (mappedCategory) {
+          filteredProducts = products.filter(p => p.category === mappedCategory);
+        }
       }
-      if (category === "sale") {
-        query = query.not("original_price", "is", null);
-      }
-      const { data } = await query;
-      setProducts(data || []);
+      
+      setCategoryProducts(filteredProducts);
       setLoading(false);
-    };
-    fetchProducts();
-  }, [category, categoryLabel]);
+    }, 500);
+  }, [category]);
 
-  const title = category === "new" ? "New Arrivals" : category === "sale" ? "Sale" : categoryLabel;
+  const title = getTitle(category || "");
+  const breadcrumbText = getBreadcrumbText(category || "");
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="container mx-auto px-4 lg:px-8 py-12">
+        {/* Breadcrumb */}
         <div className="flex items-center gap-2 font-body text-xs text-muted-foreground mb-8">
           <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-foreground">{title}</span>
+          <span className="text-foreground">{breadcrumbText}</span>
         </div>
-        <h1 className="font-heading text-3xl md:text-5xl font-semibold text-foreground mb-8">{title}</h1>
+        
+        {/* Page Title with count */}
+        <div className="flex justify-between items-end mb-8 flex-wrap gap-4">
+          <h1 className="font-heading text-3xl md:text-5xl font-semibold text-foreground">
+            {title}
+          </h1>
+          <p className="font-body text-muted-foreground">
+            {categoryProducts.length} products
+          </p>
+        </div>
 
+        {/* Products Grid */}
         {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
@@ -59,19 +99,29 @@ const CategoryPage = () => {
               </div>
             ))}
           </div>
-        ) : products.length === 0 ? (
-          <p className="font-body text-muted-foreground text-center py-20">No products found in this category yet.</p>
+        ) : categoryProducts.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="font-body text-muted-foreground mb-4">
+              No products found in this category yet.
+            </p>
+            <Link 
+              to="/" 
+              className="inline-block px-6 py-3 bg-accent text-accent-foreground font-body text-sm tracking-wider uppercase hover:bg-accent/90 transition-colors"
+            >
+              Continue Shopping
+            </Link>
+          </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-            {products.map((product) => (
+            {categoryProducts.map((product) => (
               <Link key={product.id} to={`/product/${product.id}`}>
                 <ProductCard
                   name={product.name}
-                  price={Number(product.price)}
-                  originalPrice={product.original_price ? Number(product.original_price) : undefined}
-                  image={product.image_url || "/placeholder.svg"}
+                  price={product.price}
+                  originalPrice={product.originalPrice}
+                  image={product.image}
                   category={product.category}
-                  isNew={product.is_new}
+                  isNew={product.isNew}
                 />
               </Link>
             ))}
